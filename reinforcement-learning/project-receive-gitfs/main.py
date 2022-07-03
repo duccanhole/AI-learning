@@ -2,27 +2,34 @@ import pygame
 from cart import Cart
 pygame.init()
 # create a window
-wScreen = 400
+wScreen = 800
 hScreen = 500
 screen = pygame.display.set_mode((wScreen, hScreen))
 
-clock  = pygame.time.Clock()
+clock = pygame.time.Clock()
 
-cart = Cart(screen, pygame, 20, 450)
+cart = Cart(screen)
+cart.rect.x = 20
+cart.rect.y = 480
+
+pygame.display.set_caption('game test')
+
+# sprite
+sprite_list = pygame.sprite.Group()
+sprite_list.add(cart)
 # set variable for the game loop
 running = True
-
 while running:
     for e in pygame.event.get():
         if e.type == pygame.QUIT:
             running = False
-        elif e.type == pygame.KEYDOWN:
-            if e.key == pygame.K_LEFT:
-                cart.moveLeft()
-            elif e.key == pygame.K_RIGHT:
-                cart.moveRight()
-    screen.fill((0,0,0))
-    cart.updatePosition()
-    pygame.display.update()
+            
+    cart.detectKeyAction()
+        
+    sprite_list.update()
+    screen.fill(0)
+    sprite_list.draw(screen)
+    pygame.display.flip()
     clock.tick(60)
+
 pygame.quit()

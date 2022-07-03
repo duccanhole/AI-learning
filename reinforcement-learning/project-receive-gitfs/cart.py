@@ -1,15 +1,25 @@
-from multiprocessing.reduction import steal_handle
-from typing import overload
-from draw_screen import DrawScreen
+import pygame
 
-class Cart:
-    def __init__(self, screen, pygame, x, y):
-        self.d = DrawScreen(screen, pygame)
-        self.x = x
-        self.y = y
-    def updatePosition(self):
-        self.d.drawRect((255,0,0),(self.x, self.y, 10, 10))
+color_red = (255, 0, 0)
+class Cart(pygame.sprite.Sprite):
+    def __init__(self, screen):
+        super().__init__()
+        self.screen = screen
+        self.image = pygame.Surface([150, 10])
+        pygame.draw.rect(self.image, color_red, pygame.Rect(0, 0, 150, 10))
+        self.rect = self.image.get_rect()
+
     def moveLeft(self):
-        self.x -= 5
+        if self.rect.x >= 5:
+            self.rect.x -= 5
+
     def moveRight(self):
-        self.x += 5
+        if self.rect.x <= self.screen.get_width() - 5:
+            self.rect.x += 5
+
+    def detectKeyAction(self):
+        key = pygame.key.get_pressed()
+        if key[pygame.K_LEFT]:
+            self.moveLeft()
+        if key[pygame.K_RIGHT]:
+            self.moveRight()
