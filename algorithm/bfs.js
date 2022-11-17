@@ -8,8 +8,44 @@ const { Graph } = require('./graph.js');
 // - step 3: repeat step 1 and step 2 until the queue is empty.
 
 // implement
-function bfs(g) {
+function bfs(g, node) {
+    console.log('Start BFS.');
+    if (!g.getNodeAt(node)) {
+        console.log('visit node: ' + node);
+        console.log('Finish BFS.');
+        return;
+    }
     const queue = [];
-    const graphData = g.getGraph();
-    const startNode = graphData.keys();
+    const visitedPoint = {};
+    //add node to queue
+    queue.unshift(node);
+    // set node is visited
+    visitedPoint[node] = true;
+    console.log('visit node: ' + node);
+    let n = node;
+    // repeate until queue empty
+    while (queue.length > 0) {
+        const nData = g.getNodeAt(n);
+        if (!nData) continue;
+        for (let i = 0; i < nData.length; i++) {
+            if (visitedPoint[nData[i]]) continue;
+            queue.unshift(nData[i]);
+            visitedPoint[nData[i]] = true;
+            console.log('visit node: ' + nData[i]);
+        }
+        n = queue.shift();
+    }
+    console.log('Finish BFS.');
 }
+// example
+const g = new Graph();
+g.addEdge(0, [3]);
+g.addEdge(1, [2, 5, 3]);
+g.addEdge(2, [6, 4]);
+g.addEdge(3, [1, 0]);
+g.addEdge(4, [2, 7]);
+g.addEdge(5, [1, 7]);
+g.addEdge(6, [2, 7]);
+g.addEdge(7, [5, 6, 4]);
+
+bfs(g, 6);
