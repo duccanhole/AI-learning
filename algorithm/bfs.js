@@ -39,13 +39,13 @@ function bfs(g, node) {
 }
 // example
 const g = new Graph();
-g.addEdge(0, [3]);
-g.addEdge(1, [2, 5, 3]);
-g.addEdge(2, [6, 4]);
-g.addEdge(3, [1, 0]);
-g.addEdge(4, [2, 7]);
-g.addEdge(5, [1, 7]);
+g.addEdge(0, 3);
+g.addEdge(1, 5);
+g.addEdge(2, [0, 1, 5]);
+g.addEdge(3, 5);
+g.addEdge(4, []);
+g.addEdge(5, [1, 6]);
 g.addEdge(6, [2, 7]);
-g.addEdge(7, [5, 6, 4]);
+g.addEdge(7, 6);
 
 bfs(g, 6);
