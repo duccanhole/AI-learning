@@ -11,16 +11,16 @@ const costArray = [
     [40, 15, 16, 5, 20, maxValue]
 ];
 
-function gst1(mazeCost, start) {
+function gts1(mazeCost, start) {
     const res = {
-        gst: [start + 1],
+        gts: [start + 1],
         cost: 0
     }
     const length = mazeCost.length;
     if (start > length - 1) return;
     const map = new Map();
     let tmp = start;
-    while (res.gst.length <= length) {
+    while (res.gts.length <= length) {
         map.set(tmp.toString(), true);
         let minPoint = 0;
         let minCost = maxValue;
@@ -36,9 +36,9 @@ function gst1(mazeCost, start) {
         }
         console.log(minPoint + 1, minCost);
         res.cost += minCost;
-        res.gst.push(minPoint + 1);
+        res.gts.push(minPoint + 1);
         tmp = minPoint;
     }
     return res;
 }
-console.log(gst1(costArray, 4));
+console.log(gts1(costArray, 4));
