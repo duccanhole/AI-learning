@@ -1,4 +1,5 @@
 // document reference: https://www.geeksforgeeks.org/a-search-algorithm/
+// wiki: https://vi.wikipedia.org/wiki/Gi%E1%BA%A3i_thu%E1%BA%ADt_t%C3%ACm_ki%E1%BA%BFm_A*
 
 // Theoraphy
 // - Each step pick the node according to the value f(x) = g(x) + h(x) (f(x) is lowest value)

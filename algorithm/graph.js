@@ -26,4 +26,13 @@ class Graph {
     }
 }
 
-module.exports = { Graph }
+class Point {
+    distance;
+    value;
+    constructor(distance, value){
+        this.distance = distance;
+        this.value = value;
+    }
+}
+
+module.exports = { Graph, Point }

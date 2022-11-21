@@ -13,7 +13,7 @@ function calculateMoney(money) {
     }
 }
 
-// calculateMoney(555)
+calculateMoney(555)
 
 function color(g) {
     let color = 0;
