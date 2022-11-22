@@ -58,6 +58,7 @@ function color(g) {
     color++;
   }
 }
+
 const g = new Graph();
 g.addEdge(1, [2, 6, 5]);
 g.addEdge(2, [1, 7, 3]);
